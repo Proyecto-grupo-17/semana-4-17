@@ -1,10 +1,10 @@
 var jwt = require("jsonwebtoken");
 const db = require("../models");
  
-const checkToken = async(token) =>{
+async function checkToken(token) {
     let localID = null;
     try {
-       const { id } = await token.decode(token);
+       const { id } = await jwt.decode(token);
        localID = id;
     } catch (error) {
         return false;
@@ -15,7 +15,7 @@ const checkToken = async(token) =>{
     }});
     if (user) {
         const token = encode(user);
-        return token;  
+        return { token, rol: user.rol};  
     } else {
         return false;
     }
@@ -26,24 +26,23 @@ module.exports = {
   encode: async (user) => {
     const token = jwt.sign(
       {
+        rol: user.rol,
         id: user.id,
         nombre: user.nombre,
-        rol: user.rol,
         email: user.email,
       },
-      "Hola soy una cadena secreta",
+      "HolaSoyUnaCadenaSecreta",
       {
-        expiresIn: 86400, // 24 horas
-      }
-    );
+        expiresIn: '1d', // 24 horas
+      });
     return token;
   },
   //permite decodificar el token
   decode: async (token) => {
     try {
-        const{ _id } = await jwt.verify(token, "Hola soy una cadena secreta");
+        const{ id } = await jwt.verify(token, "HolaSoyUnaCadenaSecreta");
         const user = await db.Usuario.findOne({where: {
-            id :  _id,
+            id :  id,
             estado : 1
         }});
         if (user) {
@@ -51,8 +50,7 @@ module.exports = {
         } else {
             return false;
         }
-    } catch (e) {
-        //tarea
+    } catch (error) {
         const newToken = await checkToken(token);
         return newToken;
     }

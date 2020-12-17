@@ -1,9 +1,9 @@
 const routerx = require('express-promise-router');
-const articuloRouter = require('./articulo');
-const apiUsuarioRouter = require('./api/usuarios')
-
+const apiUsuarioRouter = require('./api/usuarios');
+// const apiUsuarioRouter = require('./api/articulo');
 
 const router = routerx();
+
 //.com/api/usuario
 //.com/api/usuario/listar
 //....
