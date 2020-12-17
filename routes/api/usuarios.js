@@ -16,4 +16,3 @@ router.post('/login',usuarioController.login);
 
 module.exports = router;
 
-
