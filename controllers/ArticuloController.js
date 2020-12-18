@@ -42,7 +42,7 @@ exports.update = async(req, res, next) =>{
         res.status(200).json(reg); 
     } catch (error) {
         res.status(500).send({
-            message: 'Ocurrió un erro'
+            message: 'Ocurrió un error'
         });
         next(error);
     }
