@@ -42,7 +42,7 @@ module.exports = {
             });
         } else {
             const validationResponse = await tokenService.decode(req.headers.token);
-            if (validationResponse.rol == "Administrador" || validationResponse.rol == "Vendedor") {
+            if (validationResponse.rol === "Administrador" || validationResponse.rol === "Vendedor") {
                 next();
             } else {
                 return res.status(403).send({
@@ -59,7 +59,7 @@ module.exports = {
             });
         } else {
             const validationResponse = await tokenService.decode(req.headers.token);
-            if (validationResponse.rol == "Administrador" || validationResponse.rol == "Almacenero") {
+            if (validationResponse.rol === "Administrador" || validationResponse.rol === "Almacenero") {
                 next();
             } else {
                 return res.status(403).send({

@@ -10,13 +10,13 @@ const router = routerx();
 //....
 router.use('/usuario', apiUsuarioRouter);
 
-//.com/api/articulo
-//.com/api/articulo/list
+//.com/api/categoria
+//.com/api/categoria/list
 //...
 router.use('/categoria', apiCategoriaRouter);
 
-//.com/api/categoria
-//.com/api/categoria/activate
+//.com/api/articulo
+//.com/api/articulo/activate
 //...
 router.use('/articulo', apiArticuloRouter);
 
