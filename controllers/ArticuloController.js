@@ -32,7 +32,7 @@ exports.add = async(req, res, next) =>{
 exports.update = async(req, res, next) =>{
     try {
        const reg = await db.Articulo.update({ 
-           categoriaId: req.body.categoriaId, 
+           categoriaId: req.body.categoria, 
            codigo: req.body.codigo, 
            nombre: req.body.nombre,
            descripcion: req.body.descripcion,
