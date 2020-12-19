@@ -7,8 +7,8 @@ npm install
 ### Autores:
 Daniel Felipe Martinez Vizcaino -- Documentación y Back-End
 Stefannie Julieth Morales Plazas -- Documentación y Back-End
-Héctor Leonardo Sosa Desarrollador -- Documentación y Back-End
-Mayra Alejandra Velasquez Ramos -- Documentación y Front-End
+Héctor Leonardo Sosa Desarrollador -- Documentación y Front-End
+Mayra Alejandra Velasquez Ramos -- Documentación y Back-End
 Andrés Miguel Ramírez -- Documentación y Front-End
 
 ### Metodologia general del trabajo
