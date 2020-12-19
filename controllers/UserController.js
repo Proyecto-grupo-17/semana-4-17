@@ -31,7 +31,7 @@ exports.login = async (req, res, next) => {
   }
 };
 
-exports.register = async (req, res, next) => {
+exports.add = async (req, res, next) => {
   try {
     const user = await db.Usuario.findOne({where: {email: req.body.email}});
     if (user){
@@ -77,8 +77,36 @@ exports.update = async(req, res, next) => {
     if (pas !=  reg0.password) {
       req.body.password =await bcrypt.hash(req.body.password, 10);
     }
-    const reg = await db.Usuario.update({rol: req.body.rol, nombre: req.body.nombre, password: req.body.password, email:req.body.email}, {where :{ id: req.body.id }});
-    res.status(200).json(reg);
+    const user = await db.Usuario.update({rol: req.body.rol, nombre: req.body.nombre, password: req.body.password, email:req.body.email}, {where :{ id: req.body.id }});
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).send({
+      message: 'Ocurrió un error'
+    });
+    next(error);
+  }
+}
+
+exports.activate = async(req, res, next) =>{
+  try {
+    const user = await db.Usuario.update(
+      {estado: 1}, { where: { id: req.body.id }}
+    );
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).send({
+      message:'Ocurrió un error'
+    });
+    next(error);
+  }
+}
+
+exports.deactivate = async(req, res, next) =>{
+  try {
+    const user = await db.Usuario.update(
+      { estado: 0}, {where: { id: req.body.id }}
+    );
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).send({
       message: 'Ocurrió un error'
